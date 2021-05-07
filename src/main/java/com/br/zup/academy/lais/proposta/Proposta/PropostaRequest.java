@@ -14,6 +14,9 @@ public class PropostaRequest {
     @NotEmpty
     @Column(unique = true)
     public String documento;
+    @NotEmpty
+    @Column(unique = true)
+    public String nome;
     @NotEmpty @Email
     public String email;
     @NotEmpty
@@ -25,15 +28,16 @@ public class PropostaRequest {
     @Deprecated
     public PropostaRequest(){}
 
-    public PropostaRequest(String documento, String email, String endereco, BigDecimal salario) {
+    public PropostaRequest(String documento,String nome, String email, String endereco, BigDecimal salario) {
         this.documento = documento;
+        this.nome = nome;
         this.email = email;
         this.endereco = endereco;
         this.salario = salario;
     }
 
     public  Proposta toModel() {
-        return new Proposta(removeMascara(documento), email,endereco,salario);
+        return new Proposta(removeMascara(documento),nome, email,endereco,salario);
     }
 
     public boolean documentoValido()
@@ -52,6 +56,5 @@ public class PropostaRequest {
     public String removeMascara(String documento) {
         return documento.replaceAll("\\D", "");
     }
-
 
 }

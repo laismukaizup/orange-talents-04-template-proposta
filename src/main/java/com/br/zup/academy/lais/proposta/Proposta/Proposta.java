@@ -16,6 +16,9 @@ public class Proposta {
     @Column(unique = true)
     public String documento;
     @NotEmpty
+    @Column(unique = true)
+    public String nome;
+    @NotEmpty
     @Email
     public String email;
     @NotEmpty
@@ -23,18 +26,49 @@ public class Proposta {
     @NotNull
     @Positive
     public BigDecimal salario;
+    public StatusProposta status;
 
     @Deprecated
     public Proposta() {
     }
 
-    public Proposta(String documento, String email, String endereco, BigDecimal salario) {
-
-        ;
+    public Proposta(String documento,String nome, String email, String endereco, BigDecimal salario) {
         this.documento = documento;
+        this.nome = nome;
         this.email = email;
         this.endereco = endereco;
         this.salario = salario;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setStatus(StatusProposta status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public StatusProposta getStatus() {
+        return status;
+    }
 }

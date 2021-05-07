@@ -1,5 +1,10 @@
 package com.br.zup.academy.lais.proposta.Proposta;
 
+import com.br.zup.academy.lais.proposta.SistemFinanceiro.AvaliacaoRequest;
+import com.br.zup.academy.lais.proposta.SistemFinanceiro.AvaliacaoRespose;
+import com.br.zup.academy.lais.proposta.SistemFinanceiro.FinanceiroClient;
+import com.br.zup.academy.lais.proposta.SistemFinanceiro.StatusAnalise;
+import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
@@ -22,6 +27,9 @@ public class PropostaController {
     @Autowired
     ProibeDocumentoIgualParaProposta proibeDocumentoIgualParaProposta;
 
+    @Autowired
+    FinanceiroClient financeiroClient;
+
     @InitBinder
     public void init(WebDataBinder binder) {
         binder.addValidators(proibeDocumentoIgualParaProposta);
@@ -30,10 +38,23 @@ public class PropostaController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid PropostaRequest request, UriComponentsBuilder uriBuilder) {
-        Proposta p = request.toModel();
-        manager.persist(p);
 
         URI uri = uriBuilder.path("/proposta").buildAndExpand().toUri();
-        return ResponseEntity.created(uri).body(request);
+        Proposta proposta = request.toModel();
+        manager.persist(proposta);
+        proposta = avaliaProposta(proposta);
+        manager.merge(proposta);
+
+        return ResponseEntity.created(uri).body(proposta);
+    }
+
+    public Proposta avaliaProposta(Proposta proposta) {
+        try {
+            AvaliacaoRespose avaliacao = financeiroClient.avaliacao(new AvaliacaoRequest(proposta));
+            proposta.setStatus(StatusAnalise.converter(avaliacao.getResultadoSolicitacao()));
+        } catch (FeignException.UnprocessableEntity ex) {
+            proposta.setStatus(StatusProposta.ELEGIVEL);
+        }
+        return proposta;
     }
 }

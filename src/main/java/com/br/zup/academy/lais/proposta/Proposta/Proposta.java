@@ -16,7 +16,6 @@ public class Proposta {
     @Column(unique = true)
     public String documento;
     @NotEmpty
-    @Column(unique = true)
     public String nome;
     @NotEmpty
     @Email
@@ -27,6 +26,7 @@ public class Proposta {
     @Positive
     public BigDecimal salario;
     public StatusProposta status;
+    public String cartao;
 
     @Deprecated
     public Proposta() {
@@ -71,4 +71,10 @@ public class Proposta {
     public StatusProposta getStatus() {
         return status;
     }
+
+    public void setCartao(String cartao) {
+        this.cartao = cartao;
+    }
+
+
 }

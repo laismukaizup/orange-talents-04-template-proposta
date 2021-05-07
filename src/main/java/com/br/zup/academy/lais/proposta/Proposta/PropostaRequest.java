@@ -15,7 +15,6 @@ public class PropostaRequest {
     @Column(unique = true)
     public String documento;
     @NotEmpty
-    @Column(unique = true)
     public String nome;
     @NotEmpty @Email
     public String email;

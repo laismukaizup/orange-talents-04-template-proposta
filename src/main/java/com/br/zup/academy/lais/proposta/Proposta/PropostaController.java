@@ -1,9 +1,7 @@
 package com.br.zup.academy.lais.proposta.Proposta;
 
 import com.br.zup.academy.lais.proposta.SistemFinanceiro.AvaliacaoRequest;
-import com.br.zup.academy.lais.proposta.SistemFinanceiro.AvaliacaoRespose;
 import com.br.zup.academy.lais.proposta.SistemFinanceiro.FinanceiroClient;
-import com.br.zup.academy.lais.proposta.SistemFinanceiro.StatusAnalise;
 import feign.FeignException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,10 +48,10 @@ public class PropostaController {
 
     public Proposta avaliaProposta(Proposta proposta) {
         try {
-            AvaliacaoRespose avaliacao = financeiroClient.avaliacao(new AvaliacaoRequest(proposta));
-            proposta.setStatus(StatusAnalise.converter(avaliacao.getResultadoSolicitacao()));
-        } catch (FeignException.UnprocessableEntity ex) {
+            financeiroClient.avaliacao(new AvaliacaoRequest(proposta));
             proposta.setStatus(StatusProposta.ELEGIVEL);
+        } catch (FeignException.UnprocessableEntity ex) {
+            proposta.setStatus(StatusProposta.NAO_ELEGIVEL);
         }
         return proposta;
     }

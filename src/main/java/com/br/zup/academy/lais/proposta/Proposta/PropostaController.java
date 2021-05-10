@@ -46,6 +46,15 @@ public class PropostaController {
         return ResponseEntity.created(uri).body(proposta);
     }
 
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity detalhar(@PathVariable("id") Long id) {
+        Proposta proposta = manager.find(Proposta.class, id);
+        if (proposta == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(new PropostaDetalheResponse(proposta.getStatus().name()));
+    }
+
     public Proposta avaliaProposta(Proposta proposta) {
         try {
             financeiroClient.avaliacao(new AvaliacaoRequest(proposta));
@@ -55,5 +64,6 @@ public class PropostaController {
         }
         return proposta;
     }
+
 
 }

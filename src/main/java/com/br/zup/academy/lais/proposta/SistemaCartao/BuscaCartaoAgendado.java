@@ -15,22 +15,27 @@ import java.util.Optional;
 public class BuscaCartaoAgendado {
     @Autowired
     PropostaRepository propostaRepository;
+    @Autowired
+    CartaoRepository cartaoRepository;
 
     @Autowired
     CartaoClient cartaoClient;
 
     @Scheduled(fixedRate = 5000)
     public void reportCurrentTime() {
-        List<Optional<Proposta>> propostaLista = propostaRepository.findByStatusAndCartao(StatusProposta.ELEGIVEL, null);
-        for (Optional<Proposta> possivelProposta : propostaLista) {
-            salvaCartao(possivelProposta.get());
+        List<Optional<Proposta>> possiveisPropostas = propostaRepository.findByStatusAndFlagCartaoOK(StatusProposta.ELEGIVEL, false);
+        for (Optional<Proposta> possivelProposta: possiveisPropostas) {
+            Proposta proposta = possivelProposta.get();
+            salvaCartao(proposta);
         }
     }
 
     private void salvaCartao(Proposta proposta) {
         try {
-            CartaoRespose cartao = cartaoClient.retornaNumeroCartao(proposta.id.toString());
-            proposta.setCartao(cartao.getId());
+            CartaoRespose cartaoRespose = cartaoClient.retornaNumeroCartao(proposta.id.toString());
+            Cartao cartao = cartaoRespose.toModel(proposta);
+            cartaoRepository.save(cartao);
+            proposta.setFlagCartaoOK(true);
             propostaRepository.save(proposta);
         }
         catch (FeignException.BadRequest badRequest){

@@ -25,8 +25,9 @@ public class Proposta {
     @NotNull
     @Positive
     public BigDecimal salario;
+    public boolean flagCartaoOK;
     public StatusProposta status;
-    public String cartao;
+
 
     @Deprecated
     public Proposta() {
@@ -56,6 +57,10 @@ public class Proposta {
         this.status = status;
     }
 
+    public void setFlagCartaoOK(boolean flagCartaoOK) {
+        this.flagCartaoOK = flagCartaoOK;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -71,11 +76,5 @@ public class Proposta {
     public StatusProposta getStatus() {
         return status;
     }
-
-    public void setCartao(String cartao) {
-        this.cartao = cartao;
-    }
-
-
 
 }

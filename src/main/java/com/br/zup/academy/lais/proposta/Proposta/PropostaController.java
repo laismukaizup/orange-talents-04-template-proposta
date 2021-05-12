@@ -59,8 +59,10 @@ public class PropostaController {
         try {
             financeiroClient.avaliacao(new AvaliacaoRequest(proposta));
             proposta.setStatus(StatusProposta.ELEGIVEL);
+            proposta.setFlagCartaoOK(false);
         } catch (FeignException.UnprocessableEntity ex) {
             proposta.setStatus(StatusProposta.NAO_ELEGIVEL);
+            proposta.setFlagCartaoOK(true);
         }
         return proposta;
     }

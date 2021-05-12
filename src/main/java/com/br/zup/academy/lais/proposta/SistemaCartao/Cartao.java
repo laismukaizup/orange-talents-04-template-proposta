@@ -12,6 +12,10 @@ public class Cartao {
     public Proposta proposta;
     public String numero;
 
+    @Deprecated
+    public Cartao() {
+    }
+
     public Cartao(Proposta proposta, String numero) {
         this.proposta = proposta;
         this.numero = numero;

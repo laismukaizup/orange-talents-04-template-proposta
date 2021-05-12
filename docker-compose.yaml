@@ -126,19 +126,20 @@ services:
       - prometheus
 
   proposta:
-  depends_on:
-    - mysql
-  restart: always
-  build:
-    dockerfile: Dockerfile
-    context: .
-  image: proposta
-  container_name: proposta
-  ports:
-    - "8080:8080"
-  environment:
-    BD_URL: jdbc:mysql://mysql:3306/proposta
-
+    depends_on:
+      - mysql
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: proposta
+    container_name: proposta
+    ports:
+      - "8080:8080"
+    environment:
+      BD_URL: jdbc:mysql://mysql:3306/proposta
+      FINANCEIRO_DOMINIO: http://analise:9999/api/solicitacao
+      CARTAO_DOMINIO: http://contas:8888/api/cartoes
   mysql:
     image: 'mysql:5.7'
     volumes:

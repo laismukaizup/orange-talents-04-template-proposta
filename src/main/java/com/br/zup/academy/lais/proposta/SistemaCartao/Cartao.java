@@ -11,6 +11,15 @@ public class Cartao {
     @ManyToOne
     public Proposta proposta;
     public String numero;
+    public Boolean ativo = true;
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
 
     @Deprecated
     public Cartao() {
@@ -20,4 +29,5 @@ public class Cartao {
         this.proposta = proposta;
         this.numero = numero;
     }
+
 }

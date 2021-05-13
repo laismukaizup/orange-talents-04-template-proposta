@@ -13,6 +13,10 @@ public class Cartao {
     public String numero;
     public Boolean ativo = true;
 
+    public String getNumero() {
+        return numero;
+    }
+
     public Boolean getAtivo() {
         return ativo;
     }

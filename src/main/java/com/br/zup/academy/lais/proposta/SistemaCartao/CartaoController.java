@@ -46,6 +46,4 @@ public class CartaoController {
         BloqueioResponse bloqueioResponse = cartaoClient.retornaSituacaoCartaoBloqueado(numeroCartao, new BloqueioRequest("Proposta API"));
         return bloqueioResponse.getResultado().converter();
     }
-
-    
 }

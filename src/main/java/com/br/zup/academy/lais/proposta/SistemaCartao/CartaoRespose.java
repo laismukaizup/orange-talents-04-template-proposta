@@ -1,5 +1,6 @@
 package com.br.zup.academy.lais.proposta.SistemaCartao;
 
+import com.br.zup.academy.lais.proposta.Cartao.Cartao;
 import com.br.zup.academy.lais.proposta.Proposta.Proposta;
 
 public class CartaoRespose {

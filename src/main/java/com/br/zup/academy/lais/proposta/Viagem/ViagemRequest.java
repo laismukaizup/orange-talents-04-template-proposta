@@ -1,6 +1,6 @@
 package com.br.zup.academy.lais.proposta.Viagem;
 
-import com.br.zup.academy.lais.proposta.SistemaCartao.Cartao;
+import com.br.zup.academy.lais.proposta.Cartao.Cartao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 

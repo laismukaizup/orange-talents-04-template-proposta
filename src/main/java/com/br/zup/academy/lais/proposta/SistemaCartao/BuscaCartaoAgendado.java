@@ -1,5 +1,7 @@
 package com.br.zup.academy.lais.proposta.SistemaCartao;
 
+import com.br.zup.academy.lais.proposta.Cartao.Cartao;
+import com.br.zup.academy.lais.proposta.Cartao.CartaoRepository;
 import com.br.zup.academy.lais.proposta.Proposta.Proposta;
 import com.br.zup.academy.lais.proposta.Proposta.PropostaRepository;
 import com.br.zup.academy.lais.proposta.Proposta.StatusProposta;

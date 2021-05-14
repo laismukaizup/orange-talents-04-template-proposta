@@ -1,4 +1,4 @@
-package com.br.zup.academy.lais.proposta.SistemaCartao;
+package com.br.zup.academy.lais.proposta.Cartao;
 
 import com.br.zup.academy.lais.proposta.Proposta.Proposta;
 

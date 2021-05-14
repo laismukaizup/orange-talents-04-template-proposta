@@ -16,4 +16,6 @@ public interface CartaoClient {
     @RequestMapping(method = RequestMethod.POST,value = "/{id}/bloqueios", produces  = "application/json")
     public BloqueioResponse retornaSituacaoCartaoBloqueado(@PathVariable("id") String numeroCartao,@RequestBody BloqueioRequest bloqueioRequest);
 
+    @RequestMapping(method = RequestMethod.POST, value = "/{id}/avisos", produces  = "application/json")
+    public AvisoRespose retornaResultadoDoAvisoAoSistemaBancario(@PathVariable("id") String numeroCartao,@RequestBody AvisoRequest avisoRequest);
 }

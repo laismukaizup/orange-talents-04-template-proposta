@@ -1,6 +1,6 @@
 package com.br.zup.academy.lais.proposta.Biometria;
 
-import com.br.zup.academy.lais.proposta.SistemaCartao.Cartao;
+import com.br.zup.academy.lais.proposta.Cartao.Cartao;
 
 import java.util.Base64;
 

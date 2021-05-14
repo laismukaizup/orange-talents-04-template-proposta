@@ -1,5 +1,9 @@
-package com.br.zup.academy.lais.proposta.SistemaCartao;
+package com.br.zup.academy.lais.proposta.Cartao;
 
+import com.br.zup.academy.lais.proposta.SistemaCartao.BloqueioRequest;
+import com.br.zup.academy.lais.proposta.SistemaCartao.BloqueioResponse;
+import com.br.zup.academy.lais.proposta.SistemaCartao.CartaoClient;
+import com.br.zup.academy.lais.proposta.SistemaCartao.CartaoDadosBloqueio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,5 +1,6 @@
 package com.br.zup.academy.lais.proposta.SistemaCartao;
 
+import com.br.zup.academy.lais.proposta.Cartao.Cartao;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;

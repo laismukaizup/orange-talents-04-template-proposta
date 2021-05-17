@@ -50,7 +50,6 @@ public class ViagemController {
 
     private boolean verificaAvisoAoSistemaBacario(String numeroCartao, AvisoRequest avisoRequest) {
         AvisoRespose avisoRespose = cartaoClient.retornaResultadoDoAvisoAoSistemaBancario(numeroCartao, avisoRequest);
-        System.out.println(avisoRespose.getResultado());
         return avisoRespose.getResultado().estaOK();
     }
 }

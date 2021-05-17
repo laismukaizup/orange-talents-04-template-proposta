@@ -12,6 +12,7 @@ public class Cartao {
     public Proposta proposta;
     public String numero;
     public Boolean ativo = true;
+    public Boolean associadoPaypal = false;
 
     public String getNumero() {
         return numero;
@@ -23,6 +24,14 @@ public class Cartao {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Boolean getAssociadoPaypal() {
+        return associadoPaypal;
+    }
+
+    public void setAssociadoPaypal(Boolean associadoPaypal) {
+        this.associadoPaypal = associadoPaypal;
     }
 
     @Deprecated

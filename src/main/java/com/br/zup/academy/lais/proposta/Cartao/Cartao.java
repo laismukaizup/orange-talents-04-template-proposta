@@ -1,5 +1,6 @@
 package com.br.zup.academy.lais.proposta.Cartao;
 
+import com.br.zup.academy.lais.proposta.Carteira.TipoCarteira;
 import com.br.zup.academy.lais.proposta.Proposta.Proposta;
 
 import javax.persistence.*;
@@ -12,7 +13,11 @@ public class Cartao {
     public Proposta proposta;
     public String numero;
     public Boolean ativo = true;
-    public Boolean associadoPaypal = false;
+    public TipoCarteira tipoCarteira = TipoCarteira.EMPTY;
+
+    public void setTipoCarteira(TipoCarteira tipoCarteira) {
+        this.tipoCarteira = tipoCarteira;
+    }
 
     public String getNumero() {
         return numero;
@@ -26,13 +31,6 @@ public class Cartao {
         this.ativo = ativo;
     }
 
-    public Boolean getAssociadoPaypal() {
-        return associadoPaypal;
-    }
-
-    public void setAssociadoPaypal(Boolean associadoPaypal) {
-        this.associadoPaypal = associadoPaypal;
-    }
 
     @Deprecated
     public Cartao() {

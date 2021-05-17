@@ -22,5 +22,5 @@ public interface CartaoClient {
     public AvisoRespose retornaResultadoDoAvisoAoSistemaBancario(@PathVariable("id") String numeroCartao,@RequestBody AvisoRequest avisoRequest);
 
     @RequestMapping(method = RequestMethod.POST, value = "/{id}/carteiras", produces  = "application/json")
-    public CarteiraResponse retornaResultadoPaypalAssociado(@PathVariable("id") String numeroCartao, @RequestBody CarteiraRequest carteiraRequest);
+    public CarteiraResponse retornaResultadoAssociado(@PathVariable("id") String numeroCartao, @RequestBody CarteiraRequest carteiraRequest);
 }

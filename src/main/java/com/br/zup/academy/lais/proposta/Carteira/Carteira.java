@@ -15,11 +15,13 @@ public class Carteira {
     public String carteira;
     @ManyToOne
     public Cartao cartao;
+    public TipoCarteira tipoCarteira = TipoCarteira.EMPTY;
 
-    public Carteira(String email, String carteira, Cartao cartao) {
+    public Carteira(String email, String carteira, Cartao cartao, TipoCarteira tipoCarteira) {
         this.email = email;
         this.carteira = carteira;
         this.cartao = cartao;
+        this.tipoCarteira = tipoCarteira;
     }
 
 

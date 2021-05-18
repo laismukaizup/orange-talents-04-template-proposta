@@ -23,7 +23,7 @@ public class BuscaCartaoAgendado {
     @Autowired
     CartaoClient cartaoClient;
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 30000)
     public void reportCurrentTime() {
         List<Optional<Proposta>> possiveisPropostas = propostaRepository.findByStatusAndFlagCartaoOK(StatusProposta.ELEGIVEL, false);
         for (Optional<Proposta> possivelProposta: possiveisPropostas) {

@@ -1,7 +1,6 @@
 package com.br.zup.academy.lais.proposta.Viagem;
 
 import com.br.zup.academy.lais.proposta.Cartao.Cartao;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Future;
@@ -15,7 +14,6 @@ public class ViagemRequest {
     public String destino;
     @Future
     @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd")
     public Date dataTermino;
     @NotNull @DateTimeFormat
     public LocalDateTime dataCriacao = LocalDateTime.now();

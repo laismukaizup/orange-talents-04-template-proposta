@@ -3,6 +3,8 @@ package com.br.zup.academy.lais.proposta.Proposta;
 import com.br.zup.academy.lais.proposta.SistemFinanceiro.AvaliacaoRequest;
 import com.br.zup.academy.lais.proposta.SistemFinanceiro.FinanceiroClient;
 import feign.FeignException;
+import io.opentracing.Span;
+import io.opentracing.Tracer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
@@ -33,9 +35,19 @@ public class PropostaController {
         binder.addValidators(proibeDocumentoIgualParaProposta);
     }
 
+    private final Tracer tracer;
+
+    public PropostaController(Tracer tracer) {
+        this.tracer = tracer;
+    }
+
+
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid PropostaRequest request, UriComponentsBuilder uriBuilder) {
+
+        Span activeSpan = tracer.activeSpan();
+        activeSpan.setBaggageItem("user.email", "luram.archanjo@zup.com.br");
 
         URI uri = uriBuilder.path("/proposta").buildAndExpand().toUri();
         Proposta proposta = request.toModel();

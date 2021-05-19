@@ -1,5 +1,7 @@
 package com.br.zup.academy.lais.proposta.Proposta;
 
+import com.br.zup.academy.lais.proposta.EncryptToDatabase;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +15,7 @@ public class Proposta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     @NotEmpty
-    @Column(unique = true)
+    @Column(unique = true)  @Convert(converter = EncryptToDatabase.class)
     public String documento;
     @NotEmpty
     public String nome;

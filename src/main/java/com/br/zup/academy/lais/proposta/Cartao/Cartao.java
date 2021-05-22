@@ -7,11 +7,10 @@ import javax.persistence.*;
 
 @Entity
 public class Cartao {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @Id
+    public String id;
     @ManyToOne
     public Proposta proposta;
-    public String numero;
     public Boolean ativo = true;
     public TipoCarteira tipoCarteira = TipoCarteira.EMPTY;
 
@@ -19,8 +18,8 @@ public class Cartao {
         this.tipoCarteira = tipoCarteira;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getId() {
+        return id;
     }
 
     public Boolean getAtivo() {
@@ -36,9 +35,9 @@ public class Cartao {
     public Cartao() {
     }
 
-    public Cartao(Proposta proposta, String numero) {
+    public Cartao(Proposta proposta, String id) {
         this.proposta = proposta;
-        this.numero = numero;
+        this.id = id;
     }
 
 }

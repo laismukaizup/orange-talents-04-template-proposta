@@ -28,15 +28,15 @@ public class CartaoController {
 
     @PostMapping (value = "/bloqueioCartao/{id}")
     @Transactional
-    public ResponseEntity bloquear(@PathVariable("id") Long idCartao, UriComponentsBuilder builder, HttpServletRequest request) {
+    public ResponseEntity bloquear(@PathVariable("id") String id, UriComponentsBuilder builder, HttpServletRequest request) {
 
-        Cartao cartao = manager.find(Cartao.class, idCartao);
+        Cartao cartao = manager.find(Cartao.class, id);
         if (cartao == null)
             return ResponseEntity.notFound().build();
         if (!cartao.getAtivo())
             return ResponseEntity.unprocessableEntity().body("Cartão já bloqueado.");
 
-        Boolean sistemaBancarioOK = notificaSistemaBancarioDoBloqueio(cartao.getNumero());
+        Boolean sistemaBancarioOK = notificaSistemaBancarioDoBloqueio(cartao.getId());
         if (!sistemaBancarioOK)
             return ResponseEntity.badRequest().body("API retornou erro");
 

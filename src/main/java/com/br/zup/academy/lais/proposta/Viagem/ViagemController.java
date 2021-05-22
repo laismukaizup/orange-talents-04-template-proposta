@@ -36,7 +36,7 @@ public class ViagemController {
         else if(!cartao.getAtivo())
             return ResponseEntity.unprocessableEntity().body("Viagem não pode ser salva para um cartão cancelado");
 
-        if(!verificaAvisoAoSistemaBacario(cartao.numero, new AvisoRequest(viagemRequest.destino, viagemRequest.dataTermino)))
+        if(!verificaAvisoAoSistemaBacario(cartao.id, new AvisoRequest(viagemRequest.destino, viagemRequest.dataTermino)))
             return  ResponseEntity.unprocessableEntity().body("Erro ao processar os dados na API Externa");
 
         viagemRequest.setIpCliente(request.getRemoteAddr());

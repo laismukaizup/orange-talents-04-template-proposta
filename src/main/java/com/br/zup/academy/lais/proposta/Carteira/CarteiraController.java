@@ -47,7 +47,7 @@ public class CarteiraController {
         if (cartao == null)
             return ResponseEntity.notFound().build();
 
-        boolean resultadoOK = verificaResultadoDaAssociacao(cartao.getNumero(), carteiraRequest);
+        boolean resultadoOK = verificaResultadoDaAssociacao(cartao.getId(), carteiraRequest);
         if (!resultadoOK)
             return ResponseEntity.badRequest().body("API retornou erro");
 
